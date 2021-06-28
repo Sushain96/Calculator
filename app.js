@@ -26,39 +26,45 @@ function logEntryledger(operationSign,
     console.log(logEntries);
 
 }
-
-function addition(){
+function calculation (calculationType){
     const enteredNumber = getUserInput();
+    if ( !enteredNumber){ // to eliminate the possibility of entering falsey values like 0.
+        return;
+    }
     const initialResult = currentResult;
-    currentResult+= enteredNumber; 
-    outputDscription("+",initialResult,enteredNumber);
-    logEntryledger("ADD",initialResult,enteredNumber,currentResult);
+     let  mathOperator;
+    if (calculationType === 'ADD'){
+      currentResult+= enteredNumber; 
+      mathOperator = "+";
+    }  else if  ( calculationType === 'SUBTRACT'){
+       currentResult-= enteredNumber;    
+       mathOperator = "-";
+    }  else if  ( calculationType === 'MULTIPLY'){
+        currentResult*= enteredNumber;    
+        mathOperator = "*";
+    }  else if  ( calculationType === 'DIVIDE'){
+        currentResult/= enteredNumber;    
+        mathOperator = "/";
+        }
+    outputDscription(mathOperator,initialResult,enteredNumber);
+    logEntryledger(calculationType,initialResult,enteredNumber,currentResult);
+}
+function addition(){
+    calculation('ADD');   
 }
 
 
 function subtraction(){
-    const enteredNumber = getUserInput();
-    const initialResult = currentResult;
-    currentResult-= enteredNumber; 
-    outputDscription("-",initialResult,enteredNumber);
-    logEntryledger("SUBTRACT",initialResult,enteredNumber,currentResult);
+    calculation('SUBTRACT');
 }
 
      
 function multiplication(){
-    const enteredNumber = getUserInput();
-    const initialResult = currentResult;
-    currentResult*= enteredNumber; 
-    outputDscription("*",initialResult,enteredNumber);
-    logEntryledger("MULTIPLY",initialResult,enteredNumber,currentResult);}
-
+    calculation('MULTIPLY')
+}
      
 function division(){
-    const enteredNumber = getUserInput();
-    const initialResult = currentResult;
-    currentResult/= enteredNumber; 
-    outputDscription("/",initialResult,enteredNumber);
-    logEntryledger("DIVIDE",initialResult,enteredNumber,currentResult);
+    calculation('DIVIDE')
 }
 
 
